@@ -86,7 +86,8 @@ install2.r --error --skipinstalled \
     RColorBrewer \
     seqinr \
     scales \
-    ggplot2 
+    ggplot2 \
+    readr
 
 ## a bridge to far? -- brings in another 60 packages
 # install2.r --error --skipinstalled -n $NCPUS tidymodels
