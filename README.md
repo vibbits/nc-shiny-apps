@@ -6,6 +6,7 @@ Since I saw that this has also been a question with former docker images, I thou
 
 After playing around with various options, I provided the user-id and group-id for the shiny user in the image on built.
 `docker build -t r-shiny-nc:1.2 --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) .`
+`docker build -t r-shiny-nc:1.2 .`
 
 The dockerfile snippet:
 ```
