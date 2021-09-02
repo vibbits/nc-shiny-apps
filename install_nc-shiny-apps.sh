@@ -91,7 +91,10 @@ install2.r --error --skipinstalled \
     stringr \
     data.table \
     grid \
-    gridExtra
+    gridExtra \
+    lattice \
+    latticeExtra \
+    grDevices
 
 ## a bridge to far? -- brings in another 60 packages
 # install2.r --error --skipinstalled -n $NCPUS tidymodels
