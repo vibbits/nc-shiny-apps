@@ -1,5 +1,4 @@
 #!/bin/bash
-#!/bin/bash
 set -e
 
 SHINY_SERVER_VERSION=${1:-${SHINY_SERVER_VERSION:-latest}}
