@@ -22,7 +22,7 @@ RUN /rocker_scripts/install_nc-shiny-apps.sh
 
 USER shiny 
 
-COPY shiny-server/ /srv/shiny-server/
+COPY --chown=shiny:shiny shiny-server/ /srv/shiny-server/
 
 EXPOSE 3838
 
