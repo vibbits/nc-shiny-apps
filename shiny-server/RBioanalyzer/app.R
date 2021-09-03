@@ -92,8 +92,8 @@ server <- function(input, output) {
     ladder <- read_csv(inFile1$datapath, skip = 17)
     ladder <- head(ladder, -1)
     data.ladder <- data.frame("Time"=ladder$Time, "Value"=ladder$Value)
-    class(data.ladder$Time) = "Numeric"
-    class(data.ladder$Value) = "Numeric"
+    data.ladder$Time <- as.numeric(data.ladder$Time)
+    data.ladder$Value <- as.numeric(data.ladder$Value)
     data.ladder$Value[data.ladder$Value < 0] <- 0
     data.ladder
   })
@@ -105,8 +105,8 @@ server <- function(input, output) {
     smpl <- read_csv(inFile2$datapath, skip = 17)
     smpl <- head(smpl, -1)
     data.smpl <- data.frame("Time"=smpl$Time, "Value"=smpl$Value)
-    class(data.smpl$Time) = "Numeric"
-    class(data.smpl$Value) = "Numeric"
+    data.smpl$Time <- as.numeric(data.smpl$Time)
+    data.smpl$Value <- as.numeric(data.smpl$Value)
     data.smpl$Value[data.smpl$Value < 0] <- 0
     data.smpl
   })
@@ -118,8 +118,8 @@ server <- function(input, output) {
     smpl2 <- read_csv(inFile3$datapath, skip = 17)
     smpl2 <- head(smpl2, -1)
     data.smpl2 <- data.frame("Time"=smpl2$Time, "Value"=smpl2$Value)
-    class(data.smpl2$Time) = "Numeric"
-    class(data.smpl2$Value) = "Numeric"
+    data.smpl2$Time <- as.numeric(data.smpl2$Time)
+    data.smpl2$Value <- as.numeric(data.smpl2$Value)
     data.smpl2$Value[data.smpl2$Value < 0] <- 0
     data.smpl2
   })
