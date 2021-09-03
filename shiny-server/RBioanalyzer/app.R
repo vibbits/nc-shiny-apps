@@ -90,6 +90,7 @@ server <- function(input, output) {
     inFile1 <- input$file1
     if (is.null(inFile1)) return(NULL)
     ladder <- read_csv(inFile1$datapath, skip = 17)
+    ladder <- head(ladder, -2)
     data.ladder <- data.frame("Time"=ladder$Time, "Value"=ladder$Value)
     data.ladder$Value[data.ladder$Value < 0] <- 0
     data.ladder
@@ -100,6 +101,7 @@ server <- function(input, output) {
     inFile2 <- input$file2
     if (is.null(inFile2)) return(NULL)
     smpl <- read_csv(inFile2$datapath, skip = 17)
+    smpl <- head(smpl, -2)
     data.smpl <- data.frame("Time"=smpl$Time, "Value"=smpl$Value)
     data.smpl$Value[data.smpl$Value < 0] <- 0
     data.smpl
@@ -110,6 +112,7 @@ server <- function(input, output) {
     inFile3 <- input$file3
     if (is.null(inFile3)) return(NULL)
     smpl2 <- read_csv(inFile3$datapath, skip = 17)
+    smpl2 <- head(smpl2, -2)
     data.smpl2 <- data.frame("Time"=smpl2$Time, "Value"=smpl2$Value)
     data.smpl2$Value[data.smpl2$Value < 0] <- 0
     data.smpl2
@@ -138,7 +141,7 @@ server <- function(input, output) {
                     panel.xyplot(x,y, ...)
                   })
       
-      b + latticeExtra::as.layer(a)
+      b + as.layer(a)
     } else {
       foo_key2 <- list(x = .97, y = .92, corner = c(1, 1),
                        text = list(c(input$file1$name, input$file2$name, input$file3$name), col = c("grey", "blue", "red")),
@@ -166,7 +169,7 @@ server <- function(input, output) {
                     panel.xyplot(x,y, ...)
                   })
       
-      b + latticeExtra::as.layer(c) + latticeExtra::as.layer(a)
+      b + as.layer(c) + as.layer(a)
     }
   })
   
