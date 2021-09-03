@@ -110,9 +110,10 @@ server <- function(input, output) {
   
   fasta.files <- eventReactive({input$process}, {
     # remove previous uploads
-    unlink("Data/*", recursive=TRUE)
+    unlink("Data", recursive=TRUE)
     # unzip user data
-    unzip.files <- unzip(input$upload$datapath, list = FALSE, exdir = ".")
+    dir.create("Data")
+    unzip.files <- unzip(input$upload$datapath, list = FALSE, exdir = "Data")
     # get rid of OSX hidden and empty stuff
     fasta.files <- subset(unzip.files, !grepl("__MACOSX|.DS_Store|/$", unzip.files))
     unlink("Data/__MACOSX", recursive=TRUE)
