@@ -78,12 +78,9 @@ ui <- fluidPage(
 server <- function(input, output) {
   
   output$downloadData <- downloadHandler(
-    filename <- function() {
-      paste("sample", "zip", sep=".")
-    },
-    
+    filename <- function() { "RBioanalyzer_sample.zip" },
     content <- function(file) {
-      file.copy("Data/sample.zip", file)
+      file.copy("www/RBioanalyzer_sample.zip", file)
     },
     contentType = "application/zip"
   )
