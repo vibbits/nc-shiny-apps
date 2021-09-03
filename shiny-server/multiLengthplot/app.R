@@ -109,7 +109,7 @@ server <- function(input, output) {
   
   output$downloadData <- downloadHandler(
     filename <- function() { "testData.zip" },
-    content <- function(file) { file.copy("www/testData.zip", file) }
+    content <- function(file) { file.copy("Data/testData.zip", file) }
   )
   
   density.files <- eventReactive({input$process}, {
