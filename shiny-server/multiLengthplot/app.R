@@ -108,14 +108,13 @@ ui <- fluidPage(
 server <- function(input, output) {
   
   output$downloadData <- downloadHandler(
-    filename <- function() { "testData.zip" },
-    content <- function(file) { file.copy("Data/testData.zip", file) }
+    filename <- function() { "multiLengthplot_Data.zip" },
+    content <- function(file) { file.copy("www/multiLengthplot_Data.zip", file) }
   )
   
   density.files <- eventReactive({input$process}, {
     # remove previous uploads
-    unlink("Data", recursive=TRUE)
-    dir.create("Data")
+    unlink("Data/*", recursive=TRUE)
     # unzip user data
     unzip.files <- unzip(input$upload$datapath, list = FALSE, exdir = "Data")
     # get rid of OSX hidden and empty stuff
