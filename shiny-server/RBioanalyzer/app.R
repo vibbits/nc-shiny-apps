@@ -138,7 +138,7 @@ server <- function(input, output) {
                     panel.xyplot(x,y, ...)
                   })
       
-      b + as.layer(a)
+      b + latticeExtra::as.layer(a)
     } else {
       foo_key2 <- list(x = .97, y = .92, corner = c(1, 1),
                        text = list(c(input$file1$name, input$file2$name, input$file3$name), col = c("grey", "blue", "red")),
@@ -166,7 +166,7 @@ server <- function(input, output) {
                     panel.xyplot(x,y, ...)
                   })
       
-      b + as.layer(c) + as.layer(a)
+      b + latticeExtra::as.layer(c) + latticeExtra::as.layer(a)
     }
   })
   
