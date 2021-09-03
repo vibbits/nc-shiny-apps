@@ -114,9 +114,9 @@ server <- function(input, output) {
   
   density.files <- eventReactive({input$process}, {
     # remove previous uploads
-    unlink("Data", recursive=TRUE)
+    unlink("Data/*", recursive=TRUE)
     # unzip user data
-    dir.create("Data")
+    dir.create("Data", recursive=TRUE)
     unzip.files <- unzip(input$upload$datapath, list = FALSE, exdir = "Data")
     # get rid of OSX hidden and empty stuff
     density.files <- subset(unzip.files, !grepl("__MACOSX|.DS_Store|/$", unzip.files))
