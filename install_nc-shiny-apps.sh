@@ -20,7 +20,9 @@ apt-get install -y --no-install-recommends \
     libcairo2-dev \
     libxt-dev \
     xtail \
-    wget
+    wget \
+    liblzma-dev \  
+    libbz2-dev
 
 # Install Shiny server
 wget --no-verbose "https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-${SHINY_SERVER_VERSION}-amd64.deb" -O ss-latest.deb
@@ -93,7 +95,16 @@ install2.r --error --skipinstalled \
     gridExtra \
     lattice \
     latticeExtra \
-    grDevices
+    grDevices \
+    devtools \ 
+    Rhtslib \              
+    Rsamtools \                
+    GenomicAlignments \                   
+    rtracklayer  \              
+    ShortRead \                   
+    GenomicFeatures \
+    EDASeq \
+    devtools::install_github("vqv/ggbiplot")
 
 ## a bridge to far? -- brings in another 60 packages
 # install2.r --error --skipinstalled -n $NCPUS tidymodels
