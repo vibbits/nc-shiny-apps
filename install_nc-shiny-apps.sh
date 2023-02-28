@@ -20,9 +20,7 @@ apt-get install -y --no-install-recommends \
     libcairo2-dev \
     libxt-dev \
     xtail \
-    wget \
-    liblzma-dev \  
-    libbz2-dev
+    wget
 
 # Install Shiny server
 wget --no-verbose "https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-${SHINY_SERVER_VERSION}-amd64.deb" -O ss-latest.deb
