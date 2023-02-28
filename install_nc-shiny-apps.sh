@@ -96,8 +96,7 @@ install2.r --error --skipinstalled \
     lattice \
     latticeExtra \
     grDevices \
-    devtools \ 
-    devtools::install_github("vqv/ggbiplot")
+    devtools
 
 ## a bridge to far? -- brings in another 60 packages
 # install2.r --error --skipinstalled -n $NCPUS tidymodels
