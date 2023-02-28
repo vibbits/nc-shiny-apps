@@ -97,13 +97,6 @@ install2.r --error --skipinstalled \
     latticeExtra \
     grDevices \
     devtools \ 
-    Rhtslib \              
-    Rsamtools \                
-    GenomicAlignments \                   
-    rtracklayer  \              
-    ShortRead \                   
-    GenomicFeatures \
-    EDASeq \
     devtools::install_github("vqv/ggbiplot")
 
 ## a bridge to far? -- brings in another 60 packages
