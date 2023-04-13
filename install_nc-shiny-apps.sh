@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+# script: install_nc-shiny-apps.sh
+# Improvements by Thomas Standaert on the current file from:
+# https://github.com/vibbits/nc-shiny-apps/blob/main/install_nc-shiny-apps.sh
+
 SHINY_SERVER_VERSION=${1:-${SHINY_SERVER_VERSION:-latest}}
 
 # Run dependency scripts
@@ -20,7 +24,14 @@ apt-get install -y --no-install-recommends \
     libcairo2-dev \
     libxt-dev \
     xtail \
-    wget
+    wget \
+    liblzma-dev \
+    bzip2-doc \
+    libbz2-dev \
+    libxml2-dev
+
+# note: previous attempts failed because libbz2-dev requires bzip2-doc (now edited)
+#       which was excluded, probably because of --no-install-recommends
 
 # Install Shiny server
 wget --no-verbose "https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-${SHINY_SERVER_VERSION}-amd64.deb" -O ss-latest.deb
@@ -75,28 +86,51 @@ rm -rf /tmp/downloaded_packages
 ##    unixodbc-dev && \
 ##  rm -rf /var/lib/apt/lists/*
 
+# sorted list of packages required by the current shiny apps
 install2.r --error --skipinstalled \
-    shinyBS \
-    openxlsx \
-    VennDiagram \
-    DT \
     BiocManager \
-    pheatmap \
-    RColorBrewer \
-    seqinr \
-    scales \
-    ggplot2 \
-    readr \
-    stringr \
     data.table \
+    devtools \
+    DT \
+    ggplot2 \
+    ggrepel \
+    grDevices \
     grid \
     gridExtra \
     lattice \
     latticeExtra \
-    grDevices \
-    devtools
+    openxlsx \
+    pheatmap \
+    RColorBrewer \
+    readr \
+    rlist \
+    scales \
+    seqinr \
+    shinyBS \
+    shinyjs \
+    stringr \
+    VennDiagram
+
+# the following two blocks could not be added to the above command
+# because install2.r expects package names and does not support
+# more complex syntax like devtools::install_github("vqv/ggbiplot")
+# nor BiocManager::install("Rhtslib")
+
+# additional installs using devtools::install
+Rscript -e 'devtools::install_github("vqv/ggbiplot")'
+
+# additional instals using bioconductor: BiocManager::install
+Rscript -e 'BiocManager::install(c("Rhtslib",
+                    "Rsamtools",
+                    "GenomicAlignments",
+                    "rtracklayer",
+                    "ShortRead",
+                    "GenomicFeatures",
+                    "EDASeq"))'
 
 ## a bridge to far? -- brings in another 60 packages
 # install2.r --error --skipinstalled -n $NCPUS tidymodels
 
+# cleanup
  rm -rf /tmp/downloaded_packages
+ 
