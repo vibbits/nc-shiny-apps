@@ -59,7 +59,6 @@ ui <- fluidPage(
                            "text/comma-separated-values,text/plain",
                            ".txt/.csv")),
                 "This file will contain the sample name and group information. If you would like to exclude outliers from your PCA, please delete them from this .txt file and then upload here."),
-      #uiOutput("checkbox"),
       textInput("filename","Set filename for .png/.eps file", value = "PCAplot"),
       textInput("MMfile","Set filename for Materials & Methods", value = "M&M"),
       radioButtons("ellipses", "Show circle around groups?",
@@ -105,16 +104,6 @@ server <- function(input, output, session) {
     content <- function(file) { file.copy("www/sample-metadata.txt", file) }
   )
   
-  fileOptions <- reactiveValues(currentOptions=c("D.B."))
-  
-  observeEvent(input$file1, {
-    fileOptions$currentOptions = list.append(fileOptions$currentOptions, input$file1$datapath)
-  })
-  
-  observeEvent(input$file2, {
-    fileOptions$currentOptions = list.append(fileOptions$currentOptions, input$file2$datapath)
-  })
-  
   # import RData object con,taining the counts
   loadData <- reactive({
     req(input$file1)
@@ -137,15 +126,15 @@ server <- function(input, output, session) {
   })
 
   # compute PCA from the loaded data
-  computePCA <- function(){
-    req(input$file2)
+  computePCA <- reactive({
+    #req(input$file2)
     if (is.null(loadData())) return(NULL)
     temp <- t(normCounts(loadData()))
     # subset samples to those included in teh metadata uploaded file
     # this allows uploading an edited list of samples and omit some
     temp <- temp[metadata()$Sample,]
     counts.pca <- prcomp(temp[,apply(temp,2,sd)!=0], scale. = TRUE)
-  }
+  })
   
   sample.labels <- function()({
     # Split the sample names on '@' and remove last 3 elements, then paste using '_'
