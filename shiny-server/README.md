@@ -26,6 +26,13 @@ The **[RNASeqFiltering.shinyapp](RNASeqFiltering)** app loads a *StatisticalResu
 
 The **[fpkm2heatmap.shinyapp](fpkm2heatmap)** app loads a FPKM Excel file provided by the Nucleomics Core and a list of EnsEMBL gene IDs (signature) and produced a heatmap plot that can be tuned to your needs. A sample file is present for your convenience.
 
+### **martGO2list.shinyapp** 
+*[[Shiny-apps](#shiny-apps)]*
+
+![martGO2list](pictures/martGO2list.png)
+
+The **[martGO2list.shinyapp](martGO2list)** app takes an organism and a GO term (obtained for instance from **[QuickGO](https://www.ebi.ac.uk/QuickGO/annotations)** and returns a BioMart table of all genes linked to that GO term. The App can be used to produce a list of Ensembl gene IDs to be uploaded in fpkm2heatmap and plot a biological process or pathway of interest together with FPKM values from a RNASeq experiment.
+
 ### **RBioanalyzer.shinyapp** 
 *[[Shiny-apps](#shiny-apps)]*
 
